@@ -12,10 +12,10 @@
 
 #include <ft_printf.h>
 
-int pf_char_handler(t_format *f, va_list args, t_pfs *out)
+int	pf_char_handler(t_format *f, va_list args, t_pfs *out)
 {
-	char *c;
-	int len;
+	char	*c;
+	int		len;
 
 	if (!(c = ft_strnew(2)))
 		return (0);
@@ -30,11 +30,12 @@ int pf_char_handler(t_format *f, va_list args, t_pfs *out)
 
 int	pf_string_handler(t_format *f, va_list args, t_pfs *out)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (!(tmp = va_arg(args, char*)))
 		return (pfs_write(out, "(null)", -1));
-	if (!(tmp = ft_strndup(tmp, f->prec > 0 ? f->prec : ft_strlen(tmp))) || 		(f->prec == 0 && f->width == 0))
+	if (!(tmp = ft_strndup(tmp, f->prec > 0 ? f->prec : ft_strlen(tmp))) ||
+		(f->prec == 0 && f->width == 0))
 		return (pfs_write(out, "", 1));
 	if (f->prec == 0)
 		ft_memset(tmp, 0, 1);

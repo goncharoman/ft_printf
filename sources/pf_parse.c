@@ -14,7 +14,7 @@
 
 static inline t_format	format_init(void)
 {
-	return(t_format){
+	return (t_format){
 		.prec = -1,
 		.width = 0,
 		.mod = 0,
@@ -27,37 +27,40 @@ static inline t_format	format_init(void)
 	};
 }
 
-static inline int isspec(char ch)
+static inline int		isspec(char ch)
 {
 	return (!!ft_strchr("%sdibBoOuUxXfFcCnp", ch));
 }
-static inline int get_base(char ch)
+
+static inline int		get_base(char ch)
 {
 	return (ch == 'X' || ch == 'x' || ch == 'p' ? 16 :
 		ch == 'O' || ch == 'o' ? 8 :
 		ch == 's' || ch == 'c' || ch == '%' ? 0 : 10);
 }
 
-int pf_parse(char **format, va_list args, t_pfs *out)
+int						pf_parse(char **format, va_list args, t_pfs *out)
 {
 	t_format f;
 
 	f = format_init();
 	while (!isspec(**format))
 	{
-		if (!pf_parce_flag(format, &f) && (pf_parce_wp(format, args, &f) + 			pf_parce_mod(format, &f)) < 1)
+		if (!pf_parce_flag(format, &f) && (pf_parce_wp(format, args, &f) +
+			pf_parce_mod(format, &f)) < 1)
 			return (0);
-	};
+	}
 	return (pf_get_spec(format, &f, args, out));
 }
 
-int pf_get_spec(char **conv, t_format *f, va_list args, t_pfs *out)
+int						pf_get_spec(char **conv, t_format *f, va_list args,
+	t_pfs *out)
 {
-	static const int table[] = {
-		[0] = 4, [2] = 3,3,3, [12] = 2, [16] = 5, [18] = 2, [21] = 2, [32] = 4, [33] = 1, [34] = 3,3,3, [38] = 1, [44] = 2, [45] = 2, [48] = 5,
-		[50] = 2, [53] = 2
+	const int	table[] = {[0] = 4, [2] = 3,3,3, [12] = 2, [16] = 5,
+		[18] = 2, [21] = 2, [32] = 4, [33] = 1, [34] = 3,3,3, [38] = 1,
+		[44] = 2, [45] = 2, [48] = 5, [50] = 2, [53] = 2
 	};
-	int (*handlers[7])(t_format*, va_list, t_pfs*) = {
+	const int	(*handlers[7])(t_format*, va_list, t_pfs*) = {
 		NULL,
 		pf_int_handler,
 		pf_uint_handler,
@@ -65,6 +68,7 @@ int pf_get_spec(char **conv, t_format *f, va_list args, t_pfs *out)
 		pf_char_handler,
 		pf_string_handler,
 	};
+	
 	f->opt |= ft_islower(**conv) + (!!ft_strchr("epU%", **conv) << 1);
 	f->base = get_base(**conv);
 	if (**conv == '%')

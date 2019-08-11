@@ -6,13 +6,13 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 02:13:58 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 06:36:37 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 13:44:02 by kbins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-inline static intmax_t get_int_value(t_format p, va_list args)
+inline static intmax_t	get_int_value(t_format p, va_list args)
 {
 	if (p.mod == 0)
 		return (va_arg(args, int));
@@ -32,7 +32,7 @@ inline static intmax_t get_int_value(t_format p, va_list args)
 		return (0);
 }
 
-inline static uintmax_t get_uint_value(t_format p, va_list args)
+inline static uintmax_t	get_uint_value(t_format p, va_list args)
 {
 	if (p.mod == 0)
 		return (va_arg(args, unsigned int));
@@ -52,14 +52,7 @@ inline static uintmax_t get_uint_value(t_format p, va_list args)
 		return (0);
 }
 
-// int		pf_pointer_handler(t_format *f, va_list args, t_pfs *out)
-// {
-// 	f->mod = M_LLONG;
-// 	f->opt |= 2;
-// 	return (pf_uint_handler(f, args, out));
-// }
-
-int		pf_int_handler(t_format *f, va_list args, t_pfs *out)
+int						pf_int_handler(t_format *f, va_list args, t_pfs *out)
 {
 	char		*tmp;
 
@@ -80,7 +73,7 @@ int		pf_int_handler(t_format *f, va_list args, t_pfs *out)
 	return (1);
 }
 
-int		pf_uint_handler(t_format *f, va_list args, t_pfs *out)
+int						pf_uint_handler(t_format *f, va_list args, t_pfs *out)
 {
 	char		*tmp;
 

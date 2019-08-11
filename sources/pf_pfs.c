@@ -12,7 +12,7 @@
 
 #include <ft_printf.h>
 
-t_pfs	pfs_init(void)
+t_pfs			pfs_init(void)
 {
 	t_pfs	tmp;
 
@@ -20,7 +20,7 @@ t_pfs	pfs_init(void)
 	{
 		tmp.len = 0;
 		tmp.last = 0;
-	};
+	}
 	tmp.len = PF_BUFFSIZE;
 	tmp.last = 0;
 	return (tmp);
@@ -53,4 +53,3 @@ inline int		pfs_write(t_pfs *buff, char *s, size_t len)
 	}
 	return (1);
 }
-

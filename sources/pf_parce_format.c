@@ -14,8 +14,8 @@
 
 static unsigned int	n_from_format(char **format)
 {
-	int n;
-	char *num;
+	int		n;
+	char	*num;
 
 	n = 0;
 	while (**format && ft_isdigit(*(*format + n)))
@@ -27,7 +27,7 @@ static unsigned int	n_from_format(char **format)
 	return (n);
 }
 
-inline int	pf_parce_flag(char **format, t_format *f)
+inline int			pf_parce_flag(char **format, t_format *f)
 {
 	if (!ft_strchr("+- #0", **format))
 		return (0);
@@ -45,7 +45,7 @@ inline int	pf_parce_flag(char **format, t_format *f)
 	return (1);
 }
 
-inline int	pf_parce_wp(char **format, va_list args, t_format *f)
+inline int			pf_parce_wp(char **format, va_list args, t_format *f)
 {
 	int tmp;
 
@@ -66,11 +66,11 @@ inline int	pf_parce_wp(char **format, va_list args, t_format *f)
 			f->width = tmp;
 	}
 	if (**format == '*')
-			(*format)++;
+		(*format)++;
 	return (1);
 }
 
-inline int	pf_parce_mod(char **format, t_format *f)
+inline int			pf_parce_mod(char **format, t_format *f)
 {
 	uc tmp;
 

@@ -12,12 +12,7 @@
 
 #include <ft_printf.h>
 
-/*
-** pf_vprintf
-** основная функция для работы printf
-*/
-
-int pf_vprintf(char *format, va_list args)
+int	pf_vprintf(char *format, va_list args)
 {
 	t_pfs	out;
 
