@@ -6,13 +6,13 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 01:24:44 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/04/16 02:37:11 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:20:55 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-long ft_pow(long x, unsigned int n)
+long	ft_pow(long x, unsigned int n)
 {
 	int res;
 

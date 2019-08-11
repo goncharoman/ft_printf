@@ -6,13 +6,13 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 02:20:37 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/04/08 01:48:40 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:17:16 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-static size_t char_count(long long n)
+static size_t	char_count(long long n)
 {
 	size_t len;
 
@@ -23,14 +23,14 @@ static size_t char_count(long long n)
 	return (++len);
 }
 
-static void rec_itoa(long long n, char *ans, int *index)
+static void		rec_itoa(long long n, char *ans, int *index)
 {
 	if (n >= 10)
 		rec_itoa(n / 10, ans, index);
 	ans[(*index)++] = '0' + n % 10;
 }
 
-char *ft_itoa(long long n)
+char			*ft_itoa(long long n)
 {
 	char	*ans;
 	int		offset;
@@ -44,4 +44,3 @@ char *ft_itoa(long long n)
 	ans[offset] = '\0';
 	return (ans);
 }
-

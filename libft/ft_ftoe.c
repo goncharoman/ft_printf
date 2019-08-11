@@ -6,19 +6,19 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 13:17:57 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/06/24 01:48:08 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:16:03 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-# define EXP(f)		(f.spec.exp - 1023)
-# define NRM(f)		(f.spec.mnts | 0x10000000000000)
-# define SGN(n, x)	(n < 0 ? -x : x)
-# define TEN(n)		((n << 3) + (n << 1))
-# define ABS(n)		(n < 0 ? -n : n)
+#define EXP(f) (f.spec.exp - 1023)
+#define NRM(f) (f.spec.mnts | 0x10000000000000)
+#define SGN(n, x) (n < 0 ? -x : x)
+#define TEN(n) ((n << 3) + (n << 1))
+#define ABS(n) (n < 0 ? -n : n)
 
-static double delta(size_t n)
+static double	delta(size_t n)
 {
 	double x;
 
@@ -29,7 +29,7 @@ static double delta(size_t n)
 	return (x);
 }
 
-static void put_fracpart(char *s, t_float_cast f, size_t *prec, int *e)
+static void		put_fracpart(char *s, t_float_cast f, size_t *prec, int *e)
 {
 	uintmax_t		frac_part;
 
@@ -57,7 +57,7 @@ static void put_fracpart(char *s, t_float_cast f, size_t *prec, int *e)
 	}
 }
 
-static void put_intpart(char *s, uintmax_t n, size_t *prec, int *e)
+static void		put_intpart(char *s, uintmax_t n, size_t *prec, int *e)
 {
 	uintmax_t exp;
 
@@ -77,7 +77,7 @@ static void put_intpart(char *s, uintmax_t n, size_t *prec, int *e)
 	}
 }
 
-static void put_exp(char *s, int exp)
+static void		put_exp(char *s, int exp)
 {
 	char *tmp;
 
@@ -88,7 +88,7 @@ static void put_exp(char *s, int exp)
 	free(tmp);
 }
 
-char *ft_ftoe(double n, size_t prec, int sign)
+char			*ft_ftoe(double n, size_t prec, int sign)
 {
 	char			*ans;
 	t_float_cast	f;

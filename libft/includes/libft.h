@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 14:07:06 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 02:21:48 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:33:43 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,25 @@ typedef struct		s_stack
 
 typedef union
 {
-	double	n;
+	double			n;
 	struct
 	{
-		uintmax_t		mnts : 52;
-		unsigned int	exp : 11;
-		unsigned int	sign : 1;
-	} 					spec;
-} 							t_float_cast;
+		uintmax_t	mnts : 52;
+		uint32_t	exp : 11;
+		uint32_t	sign : 1;
+	}				spec;
+}					t_float_cast;
 
-typedef union
+typedef union		u_double
 {
-	long double n;
+	long double		n;
 	struct
 	{
-		uintmax_t		mnts : 64;
-		unsigned int	exp : 15;
-		unsigned int	sign : 1;
-	}					spec;
-}							t_double_cast;
-
+		uintmax_t	mnts : 64;
+		uint32_t	exp : 15;
+		uint32_t	sign : 1;
+	}				spec;
+}					t_double_cast;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -103,7 +102,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(long long n);
-char 				*ft_itoa_base(intmax_t n, unsigned int base, int sign);
+char				*ft_itoa_base(intmax_t n, unsigned int base, int sign);
 void				ft_putchar(int c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
@@ -133,5 +132,5 @@ void				ft_chcase(char **str, int (func)(int));
 long				ft_pow(long x, unsigned int n);
 char				*ft_ftoa(double n, unsigned int prec, int sign);
 char				*ft_ftoe(double n, size_t prec, int sign);
-char 				*ft_lftoa(long double n, unsigned int prec, int sign);
+char				*ft_lftoa(long double n, unsigned int prec, int sign);
 #endif

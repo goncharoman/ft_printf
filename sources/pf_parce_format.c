@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 22:44:01 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/10 23:36:42 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:38:12 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,20 @@ inline int			pf_parce_flag(char **format, t_format *f)
 	if (**format == '+')
 		f->sign = 1;
 	else if (**format == '-')
+	{
 		f->left = 1;
+		f->pad = 32;
+	}
 	else if (**format == ' ' && !f->left)
 		f->pad = 32;
 	else if (**format == '#')
 		f->alt = 1;
-	else if (**format == '0' && !f->left && f->pad != 32)
+	else if (**format == '0' && !f->left)
+	{
+		if (f->pad == 32)
+			f->opt |= 1;
 		f->pad = 48;
+	}
 	(*format)++;
 	return (1);
 }
@@ -50,20 +57,24 @@ inline int			pf_parce_wp(char **format, va_list args, t_format *f)
 	int tmp;
 
 	if ((**format < '0' || **format > '9') &&
-		**format != '*' && **format != '.')
+			**format != '*' && **format != '.')
 		return (0);
 	if (**format == '.')
 	{
 		(*format)++;
 		tmp = **format == '*' ? va_arg(args, int) : n_from_format(format);
-		if (tmp >= 0)
-			f->prec = tmp;
+		f->prec = tmp >= 0 ? tmp : f->prec;
 	}
 	else
 	{
 		tmp = **format == '*' ? va_arg(args, int) : n_from_format(format);
 		if (tmp >= 0)
 			f->width = tmp;
+		else
+		{
+			f->width = ABS(tmp);
+			f->left = 1;
+		}
 	}
 	if (**format == '*')
 		(*format)++;
@@ -72,7 +83,7 @@ inline int			pf_parce_wp(char **format, va_list args, t_format *f)
 
 inline int			pf_parce_mod(char **format, t_format *f)
 {
-	uc tmp;
+	t_uc	tmp;
 
 	if (!(ft_strchr("lhLqzj", **format)))
 		return (0);

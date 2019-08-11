@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 02:43:28 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/04/07 02:51:00 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:12:24 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	ft_chcase(char **str, int (func)(int))
 	{
 		*tmp = func(*tmp);
 		tmp++;
-	};
+	}
 }

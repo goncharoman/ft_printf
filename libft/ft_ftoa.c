@@ -6,31 +6,31 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 13:17:57 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 01:10:26 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:14:42 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-# define EXP(f) (f.spec.exp - 1023)
-# define NRM(f) (f.spec.mnts | 0x10000000000000)
-# define SGN(n, x) (n < 0 ? -x : x)
+#define EXP(f) (f.spec.exp - 1023)
+#define NRM(f) (f.spec.mnts | 0x10000000000000)
+#define SGN(n, x) (n < 0 ? -x : x)
 
-static double delta(double x, int n)
+static double	delta(double x, int n)
 {
 	while (n-- > 1)
 		x *= 0.1;
 	return (x);
 }
 
-static void this_itoa(uintmax_t n, char *ans, int *index)
+static void		this_itoa(uintmax_t n, char *ans, int *index)
 {
 	if (n >= 10)
 		this_itoa(n / 10, ans, index);
 	ans[(*index)++] = '0' + n % 10;
 }
 
-static void set_intpart(char *s, t_float_cast f)
+static void		set_intpart(char *s, t_float_cast f)
 {
 	int	offset;
 
@@ -41,12 +41,12 @@ static void set_intpart(char *s, t_float_cast f)
 		*s = '0';
 }
 
-static void set_afterpoint(char *s, t_float_cast f, unsigned int prec)
+static void		set_afterpoint(char *s, t_float_cast f, unsigned int prec)
 {
 	const short		exp = EXP(f);
 	const uintmax_t	mnts = NRM(f);
 	uintmax_t		frac_part;
-	int 			i;
+	int				i;
 
 	s += ft_strlen(s);
 	if (exp >= 0)
@@ -62,7 +62,7 @@ static void set_afterpoint(char *s, t_float_cast f, unsigned int prec)
 	}
 }
 
-char *ft_ftoa(double n, unsigned int prec, int sign)
+char			*ft_ftoa(double n, unsigned int prec, int sign)
 {
 	char			*ans;
 	t_float_cast	f;

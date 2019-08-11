@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 12:46:22 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 19:46:40 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 22:49:36 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static inline int	preinx(t_format *f, char ch)
 {
+	if (f->base == 10 || f->base == 0)
+		return (3);
 	if ((f->alt && ch != 48) || (f->opt >= 2 && f->base != 10 && f->base != 0))
 		return (f->base == 16 ? !(f->opt & 1) : 2);
 	else
@@ -28,8 +30,9 @@ static t_printf		print_init(t_format *f, char **str)
 	p.str_len = (int)ft_strlen(*str);
 	p.add = (char*)pre[preinx(f, **str)];
 	p.add_len = (int)ft_strlen(p.add);
-	p.all_len = MAX(f->width, MAX(p.str_len, f->prec) + p.add_len);
 	f->prec += (SIGN(**str) * f->sign) - (f->base == 8 && f->alt);
+	p.all_len = !!f->base ? MAX(f->width, MAX(p.str_len, f->prec) + p.add_len) :
+		f->width;
 	p.p_part = MAX(f->prec - p.str_len, 0);
 	p.w_part = MAX(p.all_len - (MAX(f->prec * !!f->base, p.str_len) +
 		p.add_len), 0);

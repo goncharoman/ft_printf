@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 01:43:04 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 20:16:22 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:38:31 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int						pf_get_spec(char **conv, t_format *f, va_list args,
 		5, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 3, 3, 3, 0, 1,
 		0, 0, 0, 0, 0, 2, 2, 0, 0, 5, 0, 2, 0, 0, 2};
 
-	f->opt |= ft_islower(**conv) + (!!ft_strchr("epU%", **conv) << 1);
+	f->opt |= (**conv != 'd' && **conv != 'i') ?
+		ft_islower(**conv) + (!!ft_strchr("epU%", **conv) << 1) : 0;
 	f->base = get_base(**conv);
 	if (**conv == '%')
 		return (pf_char_handler(f, args, out));

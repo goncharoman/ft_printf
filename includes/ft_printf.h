@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 00:12:13 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 19:17:07 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:25:51 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@
 # define M_MAXT		(1 << 5)
 # define M_LDOUBLE	(1 << 6)
 
-typedef unsigned	char	uc;
+typedef unsigned char	t_uc;
 
-typedef struct	s_pfs
+typedef struct			s_pfs
 {
 	char	*s;
 	int		len;
 	int		last;
-}				t_pfs;
+}						t_pfs;
 
-typedef struct	s_printf
+typedef struct			s_printf
 {
 	int		str_len;
 	char	*add;
@@ -49,7 +49,7 @@ typedef struct	s_printf
 	int		all_len;
 	int		w_part;
 	int		p_part;
-}				t_printf;
+}						t_printf;
 
 /*
 ** opt
@@ -57,39 +57,37 @@ typedef struct	s_printf
 ** bit 1 - low / up case
 ** bit 2 - alt (p for uint, e conv. for float)
 */
-typedef struct	s_format
+
+typedef struct			s_format
 {
 	int		prec;
 	int		width;
-	uc		mod;
-	uc		alt;
+	t_uc	mod;
+	t_uc	alt;
 	char	pad;
-	uc		left;
-	uc		sign;
-	uc		base;
-	uc		opt;
-}				t_format;
+	t_uc	left;
+	t_uc	sign;
+	t_uc	base;
+	t_uc	opt;
+}						t_format;
 
-t_pfs	pfs_init(void);
-extern int		pfs_write(t_pfs *output, char *s, size_t len);
-
-int			ft_printf(const char *format, ...);
-int			pf_vprintf(char *format, va_list args);
-int			pf_parse(char **format, va_list args, t_pfs *out);
-
-extern int			pf_parce_flag(char **format, t_format *f);
-extern int			pf_parce_wp(char **format, va_list args, t_format *f);
-extern int			pf_parce_mod(char **format, t_format *f);
-
-int			pf_get_spec(char **fomrat, t_format *f, va_list args,
-					t_pfs *out);
-
-char		*pf_fill(t_format *f, char **str);
-
-int			pf_pointer_handler(t_format *f, va_list args, t_pfs *out);
-int			pf_int_handler(t_format *f, va_list args, t_pfs *out);
-int			pf_uint_handler(t_format *f, va_list args, t_pfs *out);
-int			pf_char_handler(t_format *f, va_list args, t_pfs *out);
-int			pf_string_handler(t_format *f, va_list args, t_pfs *out);
-int			pf_float_handler(t_format *f, va_list args, t_pfs *out);
+t_pfs					pfs_init(void);
+extern int				pfs_write(t_pfs *output, char *s, size_t len);
+int						ft_printf(const char *format, ...);
+int						pf_vprintf(char *format, va_list args);
+int						pf_parse(char **format, va_list args, t_pfs *out);
+extern int				pf_parce_flag(char **format, t_format *f);
+extern int				pf_parce_wp(char **format, va_list args, t_format *f);
+extern int				pf_parce_mod(char **format, t_format *f);
+int						pf_get_spec(char **fomrat, t_format *f, va_list args,
+						t_pfs *out);
+char					*pf_fill(t_format *f, char **str);
+int						pf_pointer_handler(t_format *f, va_list args,
+						t_pfs *out);
+int						pf_int_handler(t_format *f, va_list args, t_pfs *out);
+int						pf_uint_handler(t_format *f, va_list args, t_pfs *out);
+int						pf_char_handler(t_format *f, va_list args, t_pfs *out);
+int						pf_string_handler(t_format *f, va_list args,
+						t_pfs *out);
+int						pf_float_handler(t_format *f, va_list args, t_pfs *out);
 #endif

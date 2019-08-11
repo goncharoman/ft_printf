@@ -6,14 +6,13 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 16:14:24 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/06/24 01:00:44 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:21:29 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-static void rec_itoa(uintmax_t n, unsigned int base,
-						char *ans, int *index)
+static void	rec_itoa(uintmax_t n, unsigned int base, char *ans, int *index)
 {
 	const char hex[] = "0123456789ABCDEF";
 
@@ -22,7 +21,7 @@ static void rec_itoa(uintmax_t n, unsigned int base,
 	ans[(*index)++] = hex[n % base];
 }
 
-char *ft_uitoa_base(uintmax_t n, unsigned int base)
+char		*ft_uitoa_base(uintmax_t n, unsigned int base)
 {
 	char	*ans;
 	int		offset;

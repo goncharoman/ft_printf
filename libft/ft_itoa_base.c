@@ -6,15 +6,13 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 16:14:24 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/06/25 14:45:12 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 23:18:44 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-# define ABS(n) (n < 0 ? -n : n)
-
-inline static int bound_values(intmax_t n, char *str)
+inline static int	bound_values(intmax_t n, char *str)
 {
 	if (n == INTMAX_MIN)
 		ft_strcpy(str, "-9223372036854775808");
@@ -25,7 +23,7 @@ inline static int bound_values(intmax_t n, char *str)
 	return (1);
 }
 
-static void rec_itoa(intmax_t n, int base, char *ans, int *index)
+static void			rec_itoa(intmax_t n, int base, char *ans, int *index)
 {
 	const char hex[] = "0123456789ABCDF";
 
@@ -33,11 +31,12 @@ static void rec_itoa(intmax_t n, int base, char *ans, int *index)
 		rec_itoa(n / base, base, ans, index);
 	ans[(*index)++] = hex[n % base];
 }
+
 /*
 ** return NULL if base < 0 or base > 16 or alloced error
 */
 
-char *ft_itoa_base(intmax_t n, unsigned int base, int sign)
+char				*ft_itoa_base(intmax_t n, unsigned int base, int sign)
 {
 	char	*ans;
 	int		offset;
