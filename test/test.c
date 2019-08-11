@@ -5,9 +5,10 @@
 
 int main()
 {
-	ft_printf("|@moulitest: %.10d|\n", -42);
-	printf("|@moulitest: %.10d|\n", -42);
-	getchar();
+	ft_printf("|% 03d|\n", 0);
+	printf("|% 03d|\n", 0);
+	printf("|% 04d|\n", 4);
+	printf("|%0 4d|\n", 4);
 
 	// ft_printf("|%5%|\n");
 	// printf("|%5%|\n");
