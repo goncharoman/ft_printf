@@ -1,0 +1,12 @@
+{
+	"C_Cpp.default.includePath": [
+		"includes",
+		"libft/includes"
+	],
+	"files.associations": {
+		"files.associations": {
+			"*.m": "matlab"
+		},
+		"libft.h": "c"
+	}
+}
