@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 00:12:13 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 13:37:39 by kbins            ###   ########.fr       */
+/*   Updated: 2019/08/11 19:17:07 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct	s_pfs
 
 typedef struct	s_printf
 {
-	char	*str;
 	int		str_len;
 	char	*add;
 	int		add_len;

@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 01:43:04 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/10 21:32:58 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 17:40:07 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int						pf_get_spec(char **conv, t_format *f, va_list args,
 		[18] = 2, [21] = 2, [32] = 4, [33] = 1, [34] = 3,3,3, [38] = 1,
 		[44] = 2, [45] = 2, [48] = 5, [50] = 2, [53] = 2
 	};
-	const int	(*handlers[7])(t_format*, va_list, t_pfs*) = {
+	int	(*handlers[7])(t_format*, va_list, t_pfs*) = {
 		NULL,
 		pf_int_handler,
 		pf_uint_handler,
