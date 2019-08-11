@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 12:46:22 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 19:18:57 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 19:46:40 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,13 @@ static t_printf		print_init(t_format *f, char **str)
 	return (p);
 }
 
-
-static char	*pf_prec(t_format *f, t_printf *p, char **str)
+static char			*pf_prec(t_format *f, t_printf *p, char **str)
 {
-	char		*tmp;
-	int			i;
+	char	*tmp;
+	int		i;
 
 	if (f->prec == 0 && **str == 48)
-		tmp = ft_strdup(f->width > 0 ? " " : f->base == 8 && f->alt ?
-			"0" : p->add);
+		tmp = ft_strdup(f->width > 0 ? " " : p->add);
 	else if ((tmp = ft_strnew(p->all_len - p->w_part)))
 	{
 		i = (f->pad == 48 || f->prec > 0) && SIGN(**str);
@@ -57,7 +55,7 @@ static char	*pf_prec(t_format *f, t_printf *p, char **str)
 	return ((*str = tmp));
 }
 
-char		*pf_fill(t_format *f, char **str)
+char				*pf_fill(t_format *f, char **str)
 {
 	char		*tmp;
 	t_printf	p;

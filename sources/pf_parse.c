@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 01:43:04 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 17:40:07 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/11 20:16:22 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ static inline int		isspec(char ch)
 
 static inline int		get_base(char ch)
 {
-	return (ch == 'X' || ch == 'x' || ch == 'p' ? 16 :
-		ch == 'O' || ch == 'o' ? 8 :
-		ch == 's' || ch == 'c' || ch == '%' ? 0 : 10);
+	if (ch == 'X' || ch == 'x' || ch == 'p')
+		return (16);
+	else if (ch == 'O' || ch == 'o')
+		return (8);
+	else if (ch == 's' || ch == 'c' || ch == '%')
+		return (0);
+	return (10);
 }
 
 int						pf_parse(char **format, va_list args, t_pfs *out)
@@ -56,19 +60,18 @@ int						pf_parse(char **format, va_list args, t_pfs *out)
 int						pf_get_spec(char **conv, t_format *f, va_list args,
 	t_pfs *out)
 {
-	const int	table[] = {[0] = 4, [2] = 3,3,3, [12] = 2, [16] = 5,
-		[18] = 2, [21] = 2, [32] = 4, [33] = 1, [34] = 3,3,3, [38] = 1,
-		[44] = 2, [45] = 2, [48] = 5, [50] = 2, [53] = 2
-	};
-	int	(*handlers[7])(t_format*, va_list, t_pfs*) = {
+	static int	(*handlers[7])(t_format*, va_list, t_pfs*) = {
 		NULL,
 		pf_int_handler,
 		pf_uint_handler,
 		pf_float_handler,
 		pf_char_handler,
-		pf_string_handler,
+		pf_string_handler
 	};
-	
+	static int	table[] = {4, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,
+		5, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 3, 3, 3, 0, 1,
+		0, 0, 0, 0, 0, 2, 2, 0, 0, 5, 0, 2, 0, 0, 2};
+
 	f->opt |= ft_islower(**conv) + (!!ft_strchr("epU%", **conv) << 1);
 	f->base = get_base(**conv);
 	if (**conv == '%')
