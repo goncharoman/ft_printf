@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 02:13:58 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 22:10:03 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 13:32:40 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,18 @@ int						pf_int_handler(t_format *f, va_list args, t_pfs *out)
 	char		*tmp;
 
 	tmp = ft_itoa_base(get_int_value(*f, args), f->base, f->sign);
-	f->width += (!f->width && f->prec == -1 && !f->alt && !f->sign &&
-		f->pad == 32 && !SIGN(*tmp)) * ((int)ft_strlen(tmp) + 1);
-	if (f->width == 0 && f->prec == -1 && (f->pad == 32 || f->opt & 1) &&
-		(!f->sign && !SIGN(*tmp)))
-		f->width = (int)ft_strlen(tmp) + 1;
 	f->sign = SIGN(*tmp);
+	// f->width += (!f->width && f->prec == -1 && !f->alt && !f->sign &&
+	// 	f->pad == 32 && !SIGN(*tmp)) * ((int)ft_strlen(tmp) + 1);
+	// if (f->width == 0 && f->prec == -1 && (f->pad == 32 || f->opt & 1) &&
+	// 	(!f->sign && !SIGN(*tmp)))
+	// 	f->width = (int)ft_strlen(tmp) + 1;
+	if ((f->prec == 0 || f->opt & 1) && *tmp == 48)
+		*tmp = 0;
+	f->width = MAX(f->width, (int)ft_strlen(tmp) +
+		((f->pad == 32 || f->opt & 1) && !f->left && !f->sign));
+	// if ((f->pad == 32 || f->opt & 1) && f->left)
+	// 	f->width -= pfs_write(out, " ", 1);
 	if (f->pad == 48 && f->prec == -1 && f->width > 0)
 	{
 		f->prec = f->width - (f->opt & 1);

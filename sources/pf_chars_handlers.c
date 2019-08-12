@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 22:48:32 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 23:35:46 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 11:11:08 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	pf_string_handler(t_format *f, va_list args, t_pfs *out)
 	char	*tmp;
 
 	if (!(tmp = va_arg(args, char*)))
-		return (pfs_write(out, "(null)", -1));
+		tmp = "(null)";
 	if (!(tmp = ft_strndup(tmp, f->prec > 0 ? f->prec : ft_strlen(tmp))) ||
 		(f->prec == 0 && f->width == 0))
 		return (1);
