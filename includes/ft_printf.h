@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 00:12:13 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 23:25:51 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 13:44:01 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MSET(s1, ch, len) (ft_memset(s1, ch, len) + len)
 # define SCAT(s1, s2) (ft_strcat(s1, s2) + ft_strlen(s2))
 # define SIGN(ch) (ch == 43 || ch == 45)
+# define SPACE(f) (f->pad == 32 || f->opt & 1)
 
 # define M_HALF		(1 << 0)
 # define M_HHALF	(1 << 1)

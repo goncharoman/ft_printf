@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 22:44:01 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/12 13:24:45 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:21:05 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ inline int			pf_parce_flag(char **format, t_format *f)
 	else if (**format == '-')
 	{
 		f->left = 1;
-		f->pad = 32;
+		// f->pad = 32;
 	}
 	else if (**format == ' ' && !f->left)
 		f->pad = 32;

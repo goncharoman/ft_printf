@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 13:17:57 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/11 23:20:01 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:08:26 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #define NRM(f) (f.spec.mnts)
 #define SGN(n, x) (n < 0 ? -x : x)
 #define RND(n) (n > 9 ? n - 10 : n)
+#define MNAN 0x4000000000000000
 
 static double	delta(double x, int n)
 {
@@ -69,11 +70,13 @@ char			*ft_lftoa(long double n, unsigned int prec, int sign)
 	char			*ans;
 	t_double_cast	f;
 
-	f.n = n + SGN(n, delta(0.5, prec + 2));
-	if (n == 0.0)
-		return (ft_strdup("0.0"));
-	if (EXP(f) > 63 || EXP(f) < -63)
-		return (ft_strdup("Inf"));
+	f.n = n + SGN(n, delta(prec > 1 ? 0.5 : 0.51, prec + 1));
+	if (f.spec.exp == 0x7fff)
+	{
+		if (!f.spec.sign)
+			return (ft_strdup(!!(f.spec.mnts & MNAN) ? "NAN" : "INF"));
+		return (ft_strdup("-INF"));
+	}
 	if (!(ans = ft_strnew(21 + prec)))
 		return (NULL);
 	if (f.spec.sign)
@@ -81,7 +84,10 @@ char			*ft_lftoa(long double n, unsigned int prec, int sign)
 	if (sign && !f.spec.sign)
 		*ans = '+';
 	set_intpart(f.spec.sign || sign ? ans + 1 : ans, f);
-	ft_strcat(ans, ".");
-	set_afterpoint(ans, f, prec);
+	if (prec > 0)
+	{
+		ft_strcat(ans, ".");
+		set_afterpoint(ans, f, prec);
+	}
 	return (ans);
 }

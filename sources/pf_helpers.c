@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 12:46:22 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/12 13:20:26 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:57:43 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static inline int	preinx(t_format *f, char ch)
 {
 	if (f->base == 10 || f->base == 0)
 		return (3);
-	if ((f->alt && ch != 48) || (f->opt >= 2 && f->base != 10 && f->base != 0))
+	if ((f->alt && ch != 48) ||
+		(!!(f->opt & 2) && f->base != 10 && f->base != 0))
 		return (f->base == 16 ? !(f->opt & 1) : 2);
 	else
 		return (3);
@@ -69,11 +70,10 @@ char				*pf_fill(t_format *f, char **str)
 	if (f->base > 0)
 		pf_prec(f, &p, str);
 	if (!f->left)
-		ft_strcpy(MSET(tmp, !!f->pad && !f->base ? f->pad : 32,
-			p.w_part), *str);
+		ft_strcpy(MSET(tmp, !f->base && !!f->pad ? f->pad : 32, p.w_part),
+			*str);
 	else
-		ft_memset(SCPY(tmp, *str), !!f->pad && !f->base ? f->pad : 32,
-			p.w_part);
+		ft_memset(SCPY(tmp, *str), !f->base && !!f->pad ? f->pad :32, p.w_part);
 	free(*str);
 	return ((*str = tmp));
 }
