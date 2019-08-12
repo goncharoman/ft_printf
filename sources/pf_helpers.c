@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 12:46:22 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/12 16:57:43 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:53:15 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ char				*pf_fill(t_format *f, char **str)
 		ft_strcpy(MSET(tmp, !f->base && !!f->pad ? f->pad : 32, p.w_part),
 			*str);
 	else
-		ft_memset(SCPY(tmp, *str), !f->base && !!f->pad ? f->pad :32, p.w_part);
+		ft_memset(SCPY(tmp, *str), !f->base && !!f->pad ? f->pad : 32,
+			p.w_part);
 	free(*str);
 	return ((*str = tmp));
 }

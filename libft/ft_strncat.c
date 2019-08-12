@@ -6,12 +6,11 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:31:24 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/04/05 02:07:20 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:56:37 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <stdio.h>
 
 char	*ft_strncat(char *s1, const char *s2, size_t n)
 {

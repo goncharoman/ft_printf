@@ -6,7 +6,7 @@
 /*   By: ujyzene <ujyzene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 02:13:58 by ujyzene           #+#    #+#             */
-/*   Updated: 2019/08/12 14:51:41 by ujyzene          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:52:24 by ujyzene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int						pf_int_handler(t_format *f, va_list args, t_pfs *out)
 	f->sign = SIGN(*tmp);
 	if ((f->prec == 0 || f->opt & 1) && (*(tmp + f->sign) == 48))
 		*(tmp + f->sign) = 0;
-	f->width = MAX(f->width, (int)ft_strlen(tmp) + (SPACE(f) && !f->left &&		!f->sign));
+	f->width = MAX(f->width, (int)ft_strlen(tmp) + (SPACE(f) && !f->left &&
+		!f->sign));
 	if (SPACE(f) && !f->sign)
 		f->width -= pfs_write(out, " ", 1);
 	f->pad = f->left ? 32 : f->pad;
